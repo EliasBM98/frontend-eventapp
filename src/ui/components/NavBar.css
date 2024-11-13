@@ -1,0 +1,6 @@
+.menuActivo{
+    color: red
+}
+.menuActivo:hover{
+    color: rgb(204, 0, 0);
+}
