@@ -1,0 +1,10 @@
+.container{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.box1{
+    width: 60vw;
+    
+}

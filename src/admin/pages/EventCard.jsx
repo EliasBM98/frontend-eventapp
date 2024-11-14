@@ -1,4 +1,4 @@
-import { NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 export const EventCard = ({name, description, year, start_date, end_date, event_phase, event_type, enterprise, chief}) => {
   return (

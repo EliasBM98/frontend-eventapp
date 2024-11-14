@@ -1,39 +1,54 @@
 import { NavLink } from "react-router-dom";
 import { EventGrid } from "./EventGrid";
+import { useState } from "react";
+import { FormSearch } from "../components/FormSearch";
+
+import './AllEventsPage.css'
+import { NewEvent } from "./NewEvent";
+
+
 
 export const AllEventsPage = () => {
 
+    const [events, setEvents] = useState([])
 
+    const onNewEvent = (newEvent) =>{
+          const exists = events.find((event)=> event.toLowerCase() == newEvent.toLowerCase())
+          if (exists) return
+
+      setEvents([newEvent, ...events])
+    }
 
   return (
     <>
     <h1 className="h1">Todos los eventos</h1>
 
-
-     <div className="box">
-          <button className="button" type='submit'>Buscar evento</button>
-          <input type="text" name='name' id='name' placeholder="Nombre del evento" className="inputform"/>
-      </div>
-   
-    <div>
-        <button className="button">
-            <NavLink 
-            to='/newevent'>
-                Crear evento</NavLink>
-        </button>
-    </div>
+    <section>
+        {
+        <FormSearch onNewEvent={onNewEvent}/>
+        }
+    </section>
 
     <section>
       {
-          <EventGrid/>
+        events != [] && events.map((event)=>(
+          <EventGrid key={event} event={event}/>
+        ))
+      
       }
     </section>
 
-    <button className="button">
-            <NavLink 
-            to='/admin'>
-                Home Admin</NavLink>
-    </button>
+    <div className="container">
+      <div className="box1">
+        <button className="button">
+              <NavLink
+              to='/admin'>
+                  Home Admin</NavLink>
+      </button>
+      </div>
+    </div>
+
+
     </>
   )
 }

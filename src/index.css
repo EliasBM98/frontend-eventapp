@@ -67,7 +67,7 @@
     background-color: #ededed;
     height: 45px;
   }
-
+  /*---------------------BUTTONS---------------------*/
   .button{
     color: #ffffff;
     background-color: rgb(39, 39, 39);
@@ -116,7 +116,15 @@
 
   /*---------------------FOOTER---------------------*/
   .footer{
-    display: flex;
+    background-color: rgb(39, 39, 39);
+    color: rgba(255, 255, 255, 0.87);
+    height: 8vh;
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    height: 5vh;
+    width:100%;
+    text-align: center;
 
   }
     /*---------------------CARDS---------------------*/
@@ -150,3 +158,35 @@
 
 
     /*---------------------MEDIA QUERIES---------------------*/
+
+
+  /*-----------------768px----------------*/
+@media screen and (min-width: 768px){
+
+}
+
+/*768px*/
+
+
+
+
+/*-----------------992px----------------*/
+@media screen and (min-width: 992px){
+  
+
+
+}
+
+/*992px*/
+
+
+
+
+/*-----------------1200px---------------*/
+@media screen and (min-width: 1200px){
+
+
+
+}
+
+/*1200px*/

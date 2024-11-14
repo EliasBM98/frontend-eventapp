@@ -1,19 +1,8 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
 
-import {CompletedPage,
-        HomePage,
-        MyEventsPage,
-        LoginPage
-} from './publicViews/pages';
-
-
 import { AppRouters } from './routers/AppRouters';
 import { UserProvider } from './context/UserContext'
 import { NavBarSelector } from './ui/components/NavBarSelector';
-
-
-
-
 
 
 function App() {
