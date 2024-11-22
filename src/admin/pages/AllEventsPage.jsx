@@ -1,54 +1,56 @@
 import { NavLink } from "react-router-dom";
 import { EventGrid } from "./EventGrid";
+
 import { useState } from "react";
-import { FormSearch } from "../components/FormSearch";
-
-import './AllEventsPage.css'
-import { NewEvent } from "./NewEvent";
-
+import { FormSearch } from "../components/Formsearch/FormSearch";
+import { EventCard } from "../components/EventCard/EventCard";
 
 
 export const AllEventsPage = () => {
+  const [events, setEvents] =useState([]); 
 
-    const [events, setEvents] = useState([])
+  const onNewEvent = (newEvent)=>{
+    
+    setEvents([newEvent, ...events])
 
-    const onNewEvent = (newEvent) =>{
-          const exists = events.find((event)=> event.toLowerCase() == newEvent.toLowerCase())
-          if (exists) return
+  const data = events[0]
 
-      setEvents([newEvent, ...events])
-    }
+    console.log(data)
+  };
 
   return (
     <>
     <h1 className="h1">Todos los eventos</h1>
 
+    <div className="container">
+      <div className="box1">
+          <button className="button">
+              <NavLink
+                to='/admin'>
+                    Home Admin
+              </NavLink>
+          </button>
+
+          <button className="button">
+          <NavLink 
+            to='/newevent'>
+              Crear evento
+          </NavLink>
+        </button>
+      </div>
+    </div>
+
     <section>
-        {
-        <FormSearch onNewEvent={onNewEvent}/>
-        }
+      {
+          <FormSearch onNewEvent={onNewEvent}/>
+      }
     </section>
 
     <section>
       {
-        events != [] && events.map((event)=>(
-          <EventGrid key={event} event={event}/>
-        ))
-      
+      <EventGrid/>
       }
     </section>
-
-    <div className="container">
-      <div className="box1">
-        <button className="button">
-              <NavLink
-              to='/admin'>
-                  Home Admin</NavLink>
-      </button>
-      </div>
-    </div>
-
-
     </>
   )
 }

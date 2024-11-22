@@ -11,14 +11,12 @@ export const NavBarSelector = () => {
   return (
     <>
     {
-        isAuthenticated ?
+        isAuthenticated 
+        ?
         <NavBarAdmin/>
         :
         <NavBarUser/>
     }
-    
-    
-    
     </>
   )
 }

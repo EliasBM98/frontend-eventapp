@@ -34,9 +34,6 @@ export const LoginPage = () => {
       <h2>{mensaje}</h2>
 
 
-
-      <code><pre>{JSON.stringify(user, null, 1)}</pre></code>
-
       <div className="box">
         <form
           className="loginform"

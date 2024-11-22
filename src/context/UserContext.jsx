@@ -17,7 +17,7 @@ export const UserProvider = ({children}) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     const login = () => setIsAuthenticated(true); //Cuando se ejecute el estado de autenticado pasa a true
-    
+
     const logout = () => {
         setIsAuthenticated(false)
         setUser({})

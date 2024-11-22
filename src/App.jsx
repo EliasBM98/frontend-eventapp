@@ -1,5 +1,3 @@
-import { Route, Routes, Navigate } from 'react-router-dom';
-
 import { AppRouters } from './routers/AppRouters';
 import { UserProvider } from './context/UserContext'
 import { NavBarSelector } from './ui/components/NavBarSelector';
@@ -9,20 +7,20 @@ function App() {
   return (
     <>
       <UserProvider>
-      <header>
-        Event APP
+      <header className='header'>
+          <h1 className='h1'>Event APP</h1>
       </header>
 
-      <nav>
+      {/* <nav>
         <NavBarSelector/>
-      </nav>
+      </nav> */}
       
       <main>
         <AppRouters/>
       </main>
 
       <footer className='footer'>
-        Este es el Footer
+        <p>Event app.</p>
       </footer>
     </UserProvider>
     </>

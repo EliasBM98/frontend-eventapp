@@ -20,19 +20,6 @@ export const NavBarAdmin = () => {
 
         <li className='navelement'>
             <NavLink 
-            to='editevent'
-            className={({isActive}) => isActive ? 'menuActivo' : ''}>
-                Editar evento</NavLink>
-        </li>
-
-        <li className='navelement'>
-            <NavLink 
-            to='deleteevent'
-            className={({isActive}) => isActive ? 'menuActivo' : ''}>
-                Borrar evento</NavLink>
-        </li>
-        <li className='navelement'>
-            <NavLink 
             to='allevents'
             className={({isActive}) => isActive ? 'menuActivo' : ''}>
                 Todos los eventos</NavLink>

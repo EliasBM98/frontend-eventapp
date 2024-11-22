@@ -1,7 +1,8 @@
 import { useFetch } from "../../hooks/useFetch"
-import { EventCard } from "./EventCard"
+import { EventList } from "../components/EventList/EventList"
 
-export const EventGrid = ({event}) => {
+
+export const EventGrid = () => {
     /*const events =[
         {id: 1,
         name: "Evento 1", 
@@ -38,28 +39,43 @@ export const EventGrid = ({event}) => {
         }
       ]*/
 
-    const {events, isLoading} = useFetch(event)    
+    const url=`${import.meta.env.VITE_URL_BASE}/events/0`
+
+    const {events, error, isLoading, setEvents} = useFetch(url);    
+
+    const {ok, data, msg, total_pages} =events;
+
+    
+
   return (
     <>
+    <p className="counter">{total_pages} eventos activos </p>
     {
-        isLoading && <p>Cargando...</p>
+      isLoading && <p>Cargando...</p>
     }
     
-    <section>
-        {
-        events.map(({id,
-                name, 
-                description, 
-                year, 
-                start_date, 
-                end_date, 
-                event_phase, 
-                event_type, 
-                enterprise,
-                chief})=>(
-                    <EventCard key={id} name={name} description={description} year={year} start_date={start_date} end_date={end_date} event_phase={event_phase} event_type={event_type} enterprise={enterprise} chief={chief}/>
-                ))
-        }
+    <section className="box">
+      <table className="fulltable">
+       <thead>
+          <tr>
+              <th>Nombre</th>
+              <th>Empresa</th>
+              <th>Comienza</th>
+              <th>Fase</th>
+              <th>Tipo</th>
+              <th>Lider del equipo</th>
+          </tr>
+        </thead>
+        <tbody>
+            {
+              error
+              ?
+              <p>{msg}</p>
+              :
+              data?.length>0 && data.map((event) => (<tr className="tablerow" key={event.id}><EventList key={event.id} {...event}/></tr> ))
+            }
+        </tbody>
+      </table>
     </section>
     
     </>
