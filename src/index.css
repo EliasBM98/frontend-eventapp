@@ -1,68 +1,402 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
+*{
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+    --font-family: "Roboto", sans-serif;
+    --font-bold: 700;
+    --font-regular: 300;
+    --font-medium: 500;
+    /*Colors*/
+    --dark-color: black;
+    --medium-color:  rgb(192, 192, 192);
+    --light-color: white;
+    /*Sizes*/
+    --gap: 20px;
+  }
+
+body{
+  font-family: var(--font-family);
+  font-weight: var(--font-regular);
+}
+
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6 {
+  font-weight: var(--font-bold);
+}
+
+a{
+  color: inherit;
+  text-decoration: none;
+}
+
+.error-txt{
+  color: red;
+  margin-top: 12px;
+}
+
+.container{
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 10px!important;
+  padding-right: 10px!important;
+
+}
+
+.flex{
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: var(--gap);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.flex > * {
+  width: 100%;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.bg-dark{
+  background-color: var(--dark-color);
+  color: var(--light-color);
+}
+
+.btn{
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: none;
+  border: none;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.btn-small{
+  padding: 5px!important;
+  border-radius: 5px!important;
+
 }
+
+.btn-table{
+  width: 100%;
+}
+
+.btn-delete{
+  background-color: rgb(189, 35, 35);
+  color:white;
+}
+
+
+/*======================HEADER======================*/
+.header{
+  padding: var(--gap);
+  height: 150px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.header p{
+  font-size: 3rem;
+  font-weight: var(--font-bold);
+}
+
+.nav.flex{
+  justify-content: flex-end;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.nav.flex .btn{
+  width: 110px;
+}
+
+
+/*======================BODY======================*/
+.main{
+  padding: 25px 0;
+  /* border: 1px solid black; */
+  margin-bottom: 100px;
+}
+
+.header-section{
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+/*auth*/
+.auth-form-container{
+  width: 50%;
+  min-width: 290px;
+  border: 1px solid var(--medium-color);
+  margin: 50px auto;
+  padding: var(--gap);
+  /* background-color: var(--medium-color); */
+}
+
+.login-txt{
+  font-weight: var(--font-medium);
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.authform{
+
+}
+.authform > *{
+  display: block;
+  width: 100%;
+}
+
+.authform > input{
+  margin-bottom: 15px;
+  padding: 7px;
+}
+
+/*private*/
+.navegacion{
+
+}
+
+.navegacion.flex{
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/*Eventgrid*/
+.contador-eventos{
+  font-weight: var(--font-bold);
+  margin: 30px 0;
+}
+
+.fulltable{
+  width: 100%;
+}
+
+.fulltable-centered{
+  width: 100%;
+  text-align: center;
+}
+
+.fulltable th{
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  padding: 10px;
+}
+
+.fulltable tbody tr:nth-child(odd){
+  background-color: var(--light-color);
+}
+
+.fulltable tbody tr:nth-child(even){
+  background-color: var(--medium-color);
+}
+
+.fulltable tbody tr td:first-child,
+.fulltable tbody tr td:last-child,
+.fulltable tbody tr td:nth-child(3),
+.fulltable tbody tr td:nth-child(4){
+  text-align: center;
+}
+.fulltable tbody tr td:nth-child(5){
+  width: 40px;
+}
+
+.fulltable tbody tr td:not(:first-child),
+.fulltable tbody tr td:not(:last-child) {
+  padding: 0 10px;
+}
+
+/*Delete*/
+.msg-delete{
+  font-size: 1.2rem;
+  font-weight: var(--font-medium);
+  margin-bottom: 20px;
+}
+.msg-delete span{
+  font-size: 1.4rem;
+  font-weight: var(--font-bold);
+}
+
+.card{
+  width: 80%;
+  min-width: 290px;
+  border: 1px solid var(--medium-color);
+  margin: 30px auto 20px auto;
+  padding: var(--gap);
+  
+}
+
+.card.botonera-delete{
+  border: none;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.card p{
+  font-weight: var(--font-medium);
+  margin-bottom: 10px;
+}
+
+.card p span{
+  font-weight: var(--font-regular);
+}
+
+
+/*---------------------------------*/
+.action_select { 
+  width:fit-content;
+  cursor: pointer;
+  position: relative;
+  font-size: 1.5rem;
+}
+
+
+.action_select > ul { 
+  display: none;
+  list-style: none;
+  position: absolute;
+  top: 0;
+  border-radius: 10px;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, left 0.3s ease-in-out;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px 30px 10px 30px;
+  width: 163px;
+}
+
+
+.action_select > ul.open {
+  display: block;
+  opacity: 1;
+  z-index: 10;
+  left: -680%;
+}
+
+
+.action_select:hover {
+  cursor:pointer;
+  /* border: 1.5px solid #282828;
+  transition: 0.4s ease-in-out;
+  background-color: #444444; */
+}
+
+/*---------------------------------------*/
+
+
+/*formulario crear*/
+.eventform{
+  width: 70%;
+  margin: 0 auto;
+}
+.eventform label{
+  display: none;
+  margin-bottom: 10px;
+  font-weight: var(--font-medium);
+}
+
+.eventform input, .eventform select{
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.eventform .flex, .card.flex{
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.eventform .flex > *, 
+.card.flex > * {
+  width: 100%;
+}
+
+/*======================FOOTER======================*/
+.footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  height: 50px;
+  text-align: center;
+}
+
+/*---------------------MEDIA QUERIES---------------------*/
+
+
+/*-----------------768px----------------*/
+@media screen and (min-width: 768px){
+  .container{
+    width: 90%;
+    padding-left: 0px!important;
+    padding-right: 0px!important;
+  }
+
+  .flex > * {
+    width: calc(50% - 20px);
+  }
+
+  .navegacion.flex{
+    flex-direction: row;
+  }
+
+  .navegacion.flex > *{
+    width: calc(50% - 10px);
+  }  
+
+}
+
+/*768px*/
+
+
+
+
+/*-----------------992px----------------*/
+@media screen and (min-width: 992px){
+  .container{
+    width: 80%;
+
+  }
+
+  .flex > * {
+    width: calc(33% - 20px);
+  }
+
+  .eventform label{
+    display: block;
+  }
+
+  .eventform .flex {
+    gap: 10px;
+    
+  }
+  
+  .eventform .flex > * {
+    width: calc(33% - 10px);
+  }
+
+  .card.flex > * {
+    width: calc(50% - 10px);  
+  }
+
+}
+
+/*992px*/
+
+
+
+
+/*-----------------1200px---------------*/
+@media screen and (min-width: 1200px){
+
+  .container{
+    max-width: 1200px;
+  }
+
+
+}
+
+/*1200px*/
