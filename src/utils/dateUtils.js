@@ -1,6 +1,3 @@
-
-
-
 /**
  * Formateo de una fecha a dd-mm-yyyy
  * 

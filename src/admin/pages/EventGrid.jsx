@@ -1,5 +1,8 @@
-import { useFetch } from "../../hooks/useFetch"
-import { EventList } from "../components/EventList/EventList"
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { byPrefixAndName } from '@awesome.me/kit-KIT_CODE/icons';
+import { useFetch } from "../../hooks/useFetch";
+import { EventList } from "../components/EventList/EventList";
+import {FaBuffer} from "react-icons/fa";
 
 
 export const EventGrid = () => {
@@ -45,39 +48,41 @@ export const EventGrid = () => {
 
     const {ok, data, msg, total_pages} =events;
 
+    // const element = <FontAwesomeIcon icon={byPrefixAndName.fas['house']} />
     
 
   return (
     <>
-    <p className="counter">{total_pages} eventos activos </p>
+    <div className="contador-eventos">
+      <p className="counter">Eventos activos: {total_pages}</p>
+    </div>
+
     {
-      isLoading && <p>Cargando...</p>
+      isLoading 
+        ?
+        <p>Cargando...</p>
+        :
+        <table className="fulltable">
+          <thead>
+              <tr>
+                  <th>Ref</th>
+                  <th>Nombre</th>
+                  <th>Empresa</th>
+                  <th>Comienza</th>
+                  <th><FaBuffer/></th>
+              </tr>
+            </thead>
+            <tbody>
+                {
+                  error
+                  ?
+                  <p>{msg}</p>
+                  :
+                  data?.length>0 && data.map((event) => (<tr className="tablerow" key={event.id}><EventList key={event.id} {...event}/></tr> ))
+                }
+            </tbody>
+        </table>
     }
-    
-    <section className="box">
-      <table className="fulltable">
-       <thead>
-          <tr>
-              <th>Nombre</th>
-              <th>Empresa</th>
-              <th>Comienza</th>
-              <th>Fase</th>
-              <th>Tipo</th>
-              <th>Lider del equipo</th>
-          </tr>
-        </thead>
-        <tbody>
-            {
-              error
-              ?
-              <p>{msg}</p>
-              :
-              data?.length>0 && data.map((event) => (<tr className="tablerow" key={event.id}><EventList key={event.id} {...event}/></tr> ))
-            }
-        </tbody>
-      </table>
-    </section>
-    
     </>
   )
 }

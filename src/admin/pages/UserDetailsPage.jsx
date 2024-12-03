@@ -1,28 +1,26 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
-import { EventCard } from "../components/EventCard/EventCard";
+import { UserCard } from "../components/UserCard/UserCard";
 
-
-export const EventDetailsPage = () => {
+export const UserDetailsPage = () => {
     const {id} = useParams();
-    const url1 = `${import.meta.env.VITE_URL_BASE}/eventsid/${id}`;
-    const {events, error, isLoading, getData} = useFetch(url1);
+    const url = `${import.meta.env.VITE_URL_BASE_AUTH}/usersid/${id}`;
+    const {events, error, isLoading, getData} = useFetch(url);
     const {data, msg} = events;
     console.log(data)
     const navigate = useNavigate();
 
 
-
   return (
     <>
     <header className="header-section">
-      <h1>Detalles del evento</h1>
+      <h1>Detalles del usuario</h1>
     {
       isLoading
       ?
       <p>Cargando...</p>
       :
-      <p className="msg-delete card botonera-delete"><span>{data.name}</span></p>
+      <p className="msg-delete card botonera-delete"><span>{data.name} {data.surname}</span></p>
     }
     </header>
 
@@ -32,14 +30,14 @@ export const EventDetailsPage = () => {
       ?
       <p>{msg}</p>
       :
-      <EventCard key={events.id} {...data}/>   
+      <UserCard key={events.id} {...data}/>   
       }
 
 
 <div className="card botonera-delete flex">
         <button className="btn bg-dark btn-small btn-table">
         <Link 
-            to='/allevents'>
+            to='/allusers'>
               Cancelar</Link>
         </button>
       </div>

@@ -30,17 +30,13 @@ export const FormSearch = ({onNewEvent}) => {
 
   return (
     <>
-    <div className="container">
-      <div className="box1">
         <form
         onSubmit={searchOnSubmit}
-        className="box2">
-            <button className="button" type='submit'>Buscar evento</button>
+        className="authform">
+            <button className="btn bg-dark" type='submit'>Buscar evento</button>
             
             <input type="text" name='name' id='name' placeholder="Nombre del evento" value={form.name} className="inputform" onChange={handlerChange}/>
         </form>
-      </div>
-    </div>
     </>
   )
 }

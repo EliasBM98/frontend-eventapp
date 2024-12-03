@@ -7,20 +7,18 @@ function App() {
   return (
     <>
       <UserProvider>
-      <header className='header'>
-          <h1 className='h1'>Event APP</h1>
+      <header className='header bg-dark flex'>
+          <p>Event APP</p>
       </header>
 
-      {/* <nav>
         <NavBarSelector/>
-      </nav> */}
       
-      <main>
+      <main className='container main'>
         <AppRouters/>
       </main>
 
-      <footer className='footer'>
-        <p>Event app.</p>
+      <footer className='footer bg-dark'>
+        <p>Event app.© Todos los derecho reservados.</p>
       </footer>
     </UserProvider>
     </>
