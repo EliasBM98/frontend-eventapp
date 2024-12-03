@@ -12,10 +12,10 @@ export const NavBarSelector = () => {
     <>
     {
         isAuthenticated 
-        ?
+        &&
         <NavBarAdmin/>
-        :
-        <NavBarUser/>
+        // :
+        // <NavBarUser/>
     }
     </>
   )

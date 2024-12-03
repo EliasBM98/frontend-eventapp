@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { formatDate } from "../../../utils/dateUtils";
 import { useState } from "react";
+import {FaBuffer} from "react-icons/fa";
 
 export const EventList = ({id, name, description, year, start_date, end_date, phase, type, enterprise, chief}) => {
 
@@ -18,47 +19,28 @@ export const EventList = ({id, name, description, year, start_date, end_date, ph
 
   return (
     <>
+      <td className="tablecell">{id}</td>
       <td className="tablecell">{name}</td>
       <td className="tablecell">{enterprise}</td>
       <td className="tablecell">{dateFormat}</td>
-      <td className="tablecell">{phase}</td>
-      <td className="tablecell">{type}</td>
-      <td className="tablecell">{chief}</td>
 
-      {/*<td>
-        <button className="button">
-          <NavLink 
-            to={`/eventdetails/${id}`}>
-              Detalles</NavLink>
-        </button>
-        </td>
-
-        <td>
-          <button className="button">
-          <NavLink 
-            to={`/editevent/${id}`}>
-              Editar</NavLink>
-          </button>
-        </td>
-
-        <td>
-          <button className="deletebutton">
-            <NavLink 
-            to={`/deleteevent/${id}`}>
-                Borrar</NavLink>
-          </button>
-        </td>*/}
 
         <td>
           <div  className="action_select" 
                 onClick={handleMenuToggle}
-                onMouseLeave={handleMenuLeave}>
-            <p>Opciones</p>
-          <ul className={isMenuOpen ? "open" : ""}
-              onMouseLeave={handleMenuLeave}>
+                onMouseLeave={handleMenuLeave}
+                >
+            
+              <div className="icon-container">
+                <p className="icon"><FaBuffer/></p>
+              </div>
+            
+          <ul className={`${isMenuOpen ? "open" : ""}`}
+              onMouseLeave={handleMenuLeave}
+              >
                 
             <li>
-              <button className="button">
+              <button className="btn bg-dark btn-small btn-table">
                 <NavLink 
                   to={`/eventdetails/${id}`}>
                         Detalles
@@ -67,7 +49,7 @@ export const EventList = ({id, name, description, year, start_date, end_date, ph
             </li>
 
             <li>
-              <button className="button">
+              <button className="btn bg-dark btn-small btn-table">
                 <NavLink 
                   to={`/editevent/${id}`}>
                     Editar
@@ -76,7 +58,7 @@ export const EventList = ({id, name, description, year, start_date, end_date, ph
             </li>
 
             <li>
-              <button className="deletebutton">
+              <button className="btn bg-dark btn-small btn-table btn-delete">
                 <NavLink 
                   to={`/deleteevent/${id}`}>
                     Borrar

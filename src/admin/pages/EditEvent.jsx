@@ -52,7 +52,10 @@ export const EditEvent = () => {
 
   return (
     <>
-    <h1 className="h1">Editar evento</h1>
+    <header className="header-section">
+      <h1>Editar evento</h1>
+    </header>
+    
    
    <section>
    <div className="box">
@@ -64,7 +67,7 @@ export const EditEvent = () => {
         :
         <form className="eventform"
         onSubmit={editOnSubmit}>
-
+        <div>
           <label htmlFor="name" className="labels">Nombre del evento:</label>
           <input  type="text" 
                   id="name"  
@@ -75,6 +78,9 @@ export const EditEvent = () => {
                   defaultValue={data.name}
                   // onChange={handlerChange}
                   />
+        </div>
+
+        <div>
           <label htmlFor="description" className="labels">Breve descripción:</label>
           <input  type="text" 
                   id="description" 
@@ -85,7 +91,9 @@ export const EditEvent = () => {
                   defaultValue={data.description}
                   // onChange={handlerChange}
                   />
+        </div>
 
+        <div>
           <label htmlFor="year" className="labels">Contratado en:</label>
           <input  type="date" 
                   id="year" 
@@ -95,7 +103,9 @@ export const EditEvent = () => {
                   defaultValue={data.year}
                   // onChange={handlerChange}
                   />
+        </div>
 
+        <div>
           <label htmlFor="start_date" className="labels">Comienza en:</label>
           <input  type="date" 
                   id="start_date" 
@@ -105,7 +115,9 @@ export const EditEvent = () => {
                   defaultValue={data.start_date}
                   // onChange={handlerChange}
                   />
+        </div>
 
+        <div>
           <label htmlFor="end_date" className="labels">Finaliza en:</label>
           <input  type="date" 
                   id="end_date" 
@@ -114,17 +126,21 @@ export const EditEvent = () => {
                   defaultValue={data.end_date}
                   // onChange={handlerChange}
                   />
+        </div>
 
+        <div>
           <label htmlFor="event_phase" className="labels">Fase:</label>
           <select name="event_phase" id="event_phase" className="inputform" required defaultValue={data.event_phase} >
             <option value="1">Notificación evento</option>
             <option value="2">Búsqueda equipo técnico</option>
             <option value="3">Preparación material</option>
             <option value="4">Montaje</option>  
-            <option value="5">Directo</option>
-            <option value="6">Desmontaje</option>
-          </select>
-
+            <option value="7">En vivo</option>
+            <option value="8">Desmontaje</option>
+            </select>
+        </div>
+        
+        <div>
           <label htmlFor="event_type" className="labels">Tipo:</label>
           <select name="event_type" id="event_type" className="inputform" required defaultValue={data.event_type} >
             <option value="1">Festival</option>
@@ -132,9 +148,11 @@ export const EditEvent = () => {
             <option value="3">Musical</option>
             <option value="4">Obra de teatro</option>
             <option value="5">Corporativo</option>
-            <option value="6">Grabacion</option>
+            <option value="7">Grabacion</option>
           </select>
-          
+        </div>
+
+        <div>
           <label htmlFor="enterprise" className="labels">Empresa que contrata:</label>
           <select name="enterprise" id="enterprise" className="inputform" required defaultValue={data.enterprise} >
             <option value="1">Repsol</option>
@@ -144,28 +162,32 @@ export const EditEvent = () => {
             <option value="5">Movistar</option>
             <option value="6">Netflix</option>
           </select>
+        </div>
 
+        <div>
           <label htmlFor="chief" className="labels">Jefe de equipo:</label>
           <select name="chief" id="chief" className="inputform" required defaultValue={data.chief} >
             <option value="1">Juan</option>
             <option value="2">María</option>
             <option value="3">Javier</option>
           </select>
+        </div>
 
-          <button className="button" type='submit'>Editar evento</button>
+          <div className="flex">
+          <button className="btn bg-dark btn-small" type='submit'>Editar evento</button>
 
-          <button className="button">
+          <button className="btn bg-dark btn-small">
               <NavLink 
               to='/allevents'>
                 Cancelar</NavLink>
           </button>
         
-          <button className="button">
+          <button className="btn bg-dark btn-small">
                 <NavLink 
                 to='/admin'>
                     Home Admin</NavLink>
           </button>
-    
+          </div>
       </form>
     }
        

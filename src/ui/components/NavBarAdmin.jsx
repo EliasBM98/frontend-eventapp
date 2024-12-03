@@ -1,30 +1,24 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './NavBar.css';
+import { UserContext } from "../../context/UserContext";
+import { useContext } from 'react';
+
 
 export const NavBarAdmin = () => {
+
+  const {logout, mensaje2} = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const handlerClick = () => {
+    logout()
+    navigate('/')
+  }
+
   return (
-    <ul className='navbar'>
-        <li className='navelement'>
-            <NavLink 
-            to='admin'
-            className={({isActive}) => isActive ? 'menuActivo' : ''}>
-                Home Admin</NavLink>
-        </li>
-
-        <li className='navelement'>
-            <NavLink 
-            to='newevent'
-            className={({isActive}) => isActive ? 'menuActivo' : ''}>
-                Crear evento</NavLink>
-        </li>
-
-        <li className='navelement'>
-            <NavLink 
-            to='allevents'
-            className={({isActive}) => isActive ? 'menuActivo' : ''}>
-                Todos los eventos</NavLink>
-        </li>
-
-    </ul>
+    <nav className='flex nav'>
+      <button 
+      className='btn bg-dark btn-small'
+      onClick={handlerClick}>Log Out</button>
+    </nav>
   )
 }

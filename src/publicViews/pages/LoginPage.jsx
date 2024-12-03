@@ -1,11 +1,10 @@
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import { UserContext } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 
 
 export const LoginPage = () => {
-
-  const {mensaje, user, setUser, isAuthenticated, login} = useContext(UserContext);
+  /*const {mensaje, user, setUser, isAuthenticated, login} = useContext(UserContext);
   const navigate = useNavigate()
 
   const handlerSubmit = (ev) => {
@@ -20,32 +19,86 @@ export const LoginPage = () => {
 
     setUser(logeredUser);
     login();
-    navigate('/admin')
-      
+    navigate('/admin')*/
+
+
+    const {role, setRole, login} = useContext(UserContext);
+    const [formData, setFormData] = useState({ email: '', password: '' });
+    const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState('')
+  
+    const handleSubmit = async (ev) => {
+      ev.preventDefault();
+  
+      try {
+        const response = await fetch(`${import.meta.env.VITE_URL_BASE_AUTH}/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        });
+  
+        const data = await response.json();
+  
+        if (response.ok) {
+          localStorage.setItem('token', data.token); // Guardar token en localStorage
+          const decodedToken = JSON.parse(atob(data.token.split('.')[1]));
+          localStorage.setItem('role', decodedToken.role); // Guardar rol del usuario
+          if(decodedToken.role == 'user') {
+            login();
+            navigate('/user'); // Redirigir al home de user
+          } else if(decodedToken.role == 'admin'){
+            login();
+            navigate('/admin'); // Redirigir al home de admin
+          } else {
+            setErrorMessage('Direccion de correo sin acceso.')
+          }
+        } else {
+          console.log(error)
+          setErrorMessage('Error al obtener el usuario.'); //Si sale por aqui es undefined
+        }
+      } catch (error) {
+        console.error('Error al iniciar sesión:', error);
+        setErrorMessage('Error al iniciar sesión. Alguno de los campos es incorrecto.'); // Mensaje de error en caso de excepción
+      }
   }
 
 
   return (
     <>
-      <h1 className="h1">Login</h1>
-      <h2 className="h2">Bienvenido a EVENT APP</h2>
-      <p className="logintxt">Para continuar debes introducir tus datos</p>
+    <header className="header-section">
+      <h1>Bienvenido a EVENT APP</h1>
+    </header>
+      
 
-      <h2>{mensaje}</h2>
-
-
-      <div className="box">
+      <div className="auth-form-container">
+      
+      <h2 className="login-txt">Login</h2>
         <form
-          className="loginform"
+          className="authform"
           id='login'
-          onSubmit={handlerSubmit}
+          onSubmit={handleSubmit}
         >
-          <input type="text" name='name' id='name' placeholder="Usuario" className="inputform"/>
+          <input  type="text" 
+                  name='email' 
+                  id='email' 
+                  placeholder="Email" 
+                  className="inputform" 
+                  value={formData.email}
+                  onChange={(ev) => setFormData({ ...formData, email: ev.target.value })}/>
 
-          <input type="text" name='password' id='password' placeholder="Contraseña" className="inputform"/>
+          <input  type="password" 
+                  name='password' 
+                  id='password' 
+                  placeholder="Contraseña" 
+                  className="inputform" 
+                  value={formData.password}
+                  onChange={(ev) => setFormData({ ...formData, password: ev.target.value })}/>
 
-          <button className="button" type='submit'>Login</button>
+          <button className="btn btn-small bg-dark" type='submit'>Login</button>
         </form>
+
+        {/* Mostrar el mensaje de error si existe */}
+        {errorMessage && <div className="error-txt">{errorMessage}</div>}
       </div>
     </>
   )

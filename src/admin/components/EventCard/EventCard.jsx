@@ -7,21 +7,15 @@ export const EventCard = ({name, description, year, start_date, end_date, phase,
   const dateFormatEnd = formatDate(end_date)
  
   return (
-<div className="box">
     <article className="card">
-        <div className="card-details">
-            <h3>Nombre:{name}</h3>
-            <p>Descripcción: {description}</p>
-            <p>Contratado en: {dateFormatYear}</p>
-            <p>Comienza en: {dateFormatStart}</p>
-            <p>termina en: {dateFormatEnd}</p>
-            <p>En fase de: {phase}</p>
-            <p>Evento de tipo: {type}</p>
-            <p>Empresa que contrata: {enterprise}</p>
-            <p>Lider del equipo: {chief}</p>
-
-        </div>
+            <p>Descripcción: <span>{description}</span></p>
+            <p>Contratado en: <span>{dateFormatYear}</span></p>
+            <p>Comienza en: <span>{dateFormatStart}</span></p>
+            <p>Termina en: <span>{dateFormatEnd}</span></p>
+            <p>En fase de: <span>{phase}</span></p>
+            <p>Evento de tipo: <span>{type}</span></p>
+            <p>Empresa que contrata: <span>{enterprise}</span></p>
+            <p>Lider del equipo: <span>{chief}</span></p>
     </article>
-</div>
   )
 }

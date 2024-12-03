@@ -1,36 +1,38 @@
 import { Link, useNavigate, useParams} from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
-import { EventCard } from "../components/EventCard/EventCard";
-
-export const DeleteEvent = () => {
-  const {id} = useParams();
-  const url1 = `${import.meta.env.VITE_URL_BASE}/eventsid/${id}`;
-  const {events, error, isLoading, getData} = useFetch(url1);
-  const {data, msg} = events;
-  console.log(data)
-  const navigate = useNavigate();
+import { UserCard } from "../components/UserCard/UserCard";
 
 
-  const deleteOnClick = async (ev) => {
+export const DeleteUserPage = () => {
+const {id} = useParams();
+const url1 = `${import.meta.env.VITE_URL_BASE_AUTH}/usersid/${id}`;
+const {events, error, isLoading, getData} = useFetch(url1);
+const {data, msg} = events;
+console.log(data)
+const navigate = useNavigate();
+
+
+const deleteOnClick = async (ev) => {
     ev.preventDefault();
     try {
-      const url2 = `${import.meta.env.VITE_URL_BASE}/deleteevent/${id}`;
+      const url2 = `${import.meta.env.VITE_URL_BASE_AUTH}/deleteuser/${id}`;
       const resp = await getData(url2, 'DELETE');
       if(resp.ok){
-        console.log(resp, 'Evento eliminado');
-        navigate('/allevents')
+        console.log(resp, 'Usuario eliminado');
+        navigate('/allusers')
       } else {
-        console.log ('Error al eliminar el evento')
+        console.log ('Error al eliminar el usuario')
       }
     } catch (error) {
       console.log(error)
     }
   }
 
+
   return (
-    <>
+<>
     <header className="header-section">
-      <h1>Eliminar evento</h1>
+      <h1>Eliminar usuario</h1>
     </header>
 
     {
@@ -43,14 +45,14 @@ export const DeleteEvent = () => {
         ?
         <p>Cargando...</p>
         :
-        <p className="msg-delete card botonera-delete">Estas seguro de que quieres eliminar el evento <br /><span>{data.name}</span></p>
+        <p className="msg-delete card botonera-delete">Estas seguro de que quieres eliminar el usuario <br /><span>{data.name}</span></p>
       }
     {
       error
       ?
       <p>{msg}</p>
       :
-          <EventCard key={events.id} {...data}/>   
+          <UserCard key={events.id} {...data}/>   
       }
 
       <div className="card botonera-delete flex">
@@ -61,13 +63,12 @@ export const DeleteEvent = () => {
 
         <button className="btn bg-dark btn-small btn-table">
         <Link 
-            to='/allevents'>
+            to='/allusers'>
               Cancelar</Link>
         </button>
       </div>
     </section>
     
     </>
-
   )
 }

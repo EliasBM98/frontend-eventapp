@@ -20,31 +20,29 @@ export const AllEventsPage = () => {
 
   return (
     <>
-    <h1 className="h1">Todos los eventos</h1>
-
-    <div className="container">
-      <div className="box1">
-          <button className="button">
+    <header className="header-section">
+      <h1 className="h1">Todos los eventos</h1>
+    </header>
+    
+    <div className="navegacion flex">
+    <button className="btn bg-dark">
               <NavLink
                 to='/admin'>
                     Home Admin
               </NavLink>
           </button>
 
-          <button className="button">
+          <button className="btn bg-dark">
           <NavLink 
             to='/newevent'>
               Crear evento
           </NavLink>
         </button>
-      </div>
-    </div>
 
-    <section>
-      {
+        {/*
           <FormSearch onNewEvent={onNewEvent}/>
-      }
-    </section>
+        */}
+    </div>
 
     <section>
       {
